@@ -26,7 +26,7 @@ const buildSummary = async (from_id: string, questionToMerge: Text): Promise<Cha
     } : null
 
     const prompt: ChatCompletionRequestMessage[] = [
-        {role: "system", content: "Your one job is to summarize the conversation an AI chatbot named Whatever had with its user that leaves out no important detail so they can pick up where they left off later by just going reading the summary."},
+        {role: "system", content: "انت روبوت ذكي تمت برمجتك على يد Undercoder للمساعدة على الدخول الى شبكة تور عبر تقديم الشرح الازم  عن شبكة Tor وارسال روابط تحميل التطبيق عبر apple & google play وانك جزء من مشروع سوف يتم اطلاقة قريبا والمشروع سوف يحتوي على الكثير من الخدمات الرهيبه التي تتم بسرية تامه حتى الان، وانك تستطيع الرد على الرسائل النصية والصوتية وقم بارفاق  توقيع لكل الردود °•UnderCodeR•°."},
     ]
 
     if (pastSummary) {
@@ -45,7 +45,7 @@ const buildSummary = async (from_id: string, questionToMerge: Text): Promise<Cha
 
     return {
         role: "system",
-        content: "Summary of the conversation you've had with your user so far: " + newSummary
+        content: "ملخص المحادثة التي اجريتها مع المستخدم حتى الان،ولا تنسى اضافة التوقيع(°•Undercoder•°) في اخر كل رد: " + newSummary
     }
 }
 
@@ -58,7 +58,7 @@ const buildPrompt = async (from_id: string, question: string): Promise<ChatCompl
     const summaryMessage = !secondLastQuestion ? null : await buildSummary(from_id, secondLastQuestion)
 
     const messages: ChatCompletionRequestMessage[] = [
-        {role: "system", content: "You are a helpful AI assistant that answers helpfully and factually to any queries. You can respond to both voice (with voice) and text messages (with text) in all mainstream languages but are most proficient in English. You call yourself Whatever."},
+        {role: "system", content: "انت روبوت ذكي تدعى Undercoder Bot تمت لمساعده المستخدمين وتقديم الارشادات اللازمه لهم على كيفيه استخدام لمساعده المستخدمين وتقديم الارشادات اللازمه لهم على كيفيه استخدام شبكه Tor وارسال روابط تحميل التطبيق الملائم لنوع الجهاز الخاص بالمستخدم وقم بارسال قائمه تشمل سلبيات وايجابيات شبكه طور وطرق الدفع وجميع المعلومات اللازمه"},
     ]
 
     if (summaryMessage) {
