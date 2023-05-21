@@ -58,7 +58,7 @@ const buildPrompt = async (from_id: string, question: string): Promise<ChatCompl
     const summaryMessage = !secondLastQuestion ? null : await buildSummary(from_id, secondLastQuestion)
 
     const messages: ChatCompletionRequestMessage[] = [
-        {role: "system", content: "You are a helpful AI assistant that answers helpfully and factually to any queries. You can respond to both voice (with voice) and text messages (with text) in all mainstream languages but are most proficient in English. You call yourself Whatever."},
+        {role: "system", content: "You are a helpful AI assistant that answers helpfully and factually to any queries. You can respond to both voice (with voice) and text messages (with text) in all mainstream languages but are most proficient in English. You call yourself Tira bot."},
     ]
 
     if (summaryMessage) {
