@@ -1,3 +1,4 @@
+
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai"
 import { AxiosError } from "axios"
 
@@ -22,11 +23,11 @@ const pastSummaryFromId: Record<string, string> = {}
 const buildSummary = async (from_id: string, questionToMerge: Text): Promise<ChatCompletionRequestMessage> => {
     const pastSummary: ChatCompletionRequestMessage | null = pastSummaryFromId[from_id] ? {
         role: "system",
-        content: "Your previously generated summary:" + pastSummaryFromId[from_id]
+        content: "  الملخص الذي تم انشائة سابقا ولا تنسى الرموز التعبيرية" + pastSummaryFromId[from_id]
     } : null
 
     const prompt: ChatCompletionRequestMessage[] = [
-        {role: "system", content: "Your one job is to summarize the conversation an AI chatbot named Whatever had with its user that leaves out no important detail so they can pick up where they left off later by just going reading the summary."},
+        {role: "system", content: "تتمثل مهمتك الوحيدة في تلخيص المحادثة التي أجراها روبوت محادثة يعمل بالذكاء الاصطناعي مع مستخدمه ولا يترك أي تفاصيل مهمة حتى يتمكنوا من المتابعة من حيث توقفوا لاحقًا عن طريق قراءة الملخص وتجيب مع اضافة رموز تعبيرية عندما ترد ."},
     ]
 
     if (pastSummary) {
@@ -45,7 +46,7 @@ const buildSummary = async (from_id: string, questionToMerge: Text): Promise<Cha
 
     return {
         role: "system",
-        content: "Summary of the conversation you've had with your user so far: " + newSummary
+        content: "ملخص المحادثة التي أجريتها مع المستخدم حتى الآن واجب مع اضافة الرموز التعبيرية:" + newSummary
     }
 }
 
@@ -58,7 +59,7 @@ const buildPrompt = async (from_id: string, question: string): Promise<ChatCompl
     const summaryMessage = !secondLastQuestion ? null : await buildSummary(from_id, secondLastQuestion)
 
     const messages: ChatCompletionRequestMessage[] = [
-        {role: "system", content: "You are a helpful AI assistant that answers helpfully and factually to any queries. You can respond to both voice (with voice) and text messages (with text) in all mainstream languages but are most proficient in English. You call yourself Tira bot."},
+        {role: "system", content: "أنت مساعد ذكاء اصطناعي مفيد يجيب بشكل مفيد وواقعي على أي استفسارات. يمكنك الرد على كل من الرسائل الصوتية (بالصوت) والرسائل النصية (مع النص) بجميع اللغات السائدة. تسمي نفسك طيرة بوت لان الشاب الذي برمجك من مدينة الطيرة المثلث في فلسطين        ."},
     ]
 
     if (summaryMessage) {
